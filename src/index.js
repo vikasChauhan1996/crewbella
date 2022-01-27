@@ -6,18 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import logger from 'redux-logger'
-import thunk from 'redux-thunk';
-import rootReducer from './RootReducer';
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import rootReducer from "./RootReducer";
 
-const middleware = applyMiddleware(logger,thunk);
+const middleware = applyMiddleware(thunk);
 
-const store = createStore(rootReducer,middleware)
-console.log('store',store);
-
+const store = createStore(rootReducer, middleware);
 
 ReactDOM.render(
-  <Provider store={store} >
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>

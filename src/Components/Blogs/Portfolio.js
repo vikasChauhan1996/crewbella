@@ -24,27 +24,34 @@ const Portfolio = () => {
     "https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&w=1000&q=80";
   return (
     <>
-      {userPortfolio.map((item) => {
+      {userPortfolio.map((item, index) => {
         return (
-          <>
-            <Paper elevation={2} className={classes.paper_box}>
-              <Box className={classes.avatar_box}>
-                <img
-                  className={classes.img}
-                  src={item.images.map((imageitems) => imageitems.image)}
-                />
-              </Box>
+          <Paper elevation={2} className={classes.paper_box} key={index}>
+            <Box className={classes.avatar_box}>
+              <img
+                className={classes.img}
+                src={item.images.map((imageitems) => imageitems.image)}
+              />
+            </Box>
 
-              <Box className={classes.postInfo}>
-                <Avatar className={classes.avatar} ><img src={userDetails.basic.image_hd} className={classes.avatarimg}  /></Avatar>
-                <Box className={classes.main_content}>
-                  <Typography variant="subtitle2" className={classes.name} >{userDetails.basic.name}</Typography>
-                  <Typography variant="caption">@{userDetails.basic.username}</Typography>
-                </Box>
-                <Button> {<MoreVert />} </Button>
+            <Box className={classes.postInfo}>
+              <Avatar className={classes.avatar}>
+                <img
+                  src={userDetails.basic.image_hd}
+                  className={classes.avatarimg}
+                />
+              </Avatar>
+              <Box className={classes.main_content}>
+                <Typography variant="subtitle2" className={classes.name}>
+                  {userDetails.basic.name}
+                </Typography>
+                <Typography variant="caption">
+                  @{userDetails.basic.username}
+                </Typography>
               </Box>
-            </Paper>
-          </>
+              <Button> {<MoreVert />} </Button>
+            </Box>
+          </Paper>
         );
       })}
     </>
@@ -81,21 +88,20 @@ const useStyles = makeStyles((theme) =>
     main_content: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: 'space-evenly'
+      justifyContent: "space-evenly",
     },
-    avatarimg:{
-      width:"46px",
-      height:"47px"
+    avatarimg: {
+      width: "46px",
+      height: "47px",
     },
-    avatar:{
-      width:"50px",
-      height:"50px"
-
+    avatar: {
+      width: "50px",
+      height: "50px",
     },
-    name:{
+    name: {
       fontWeight: "bold",
-      textTransform:"capitalize"
-    }
+      textTransform: "capitalize",
+    },
   })
 );
 

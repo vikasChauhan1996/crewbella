@@ -31,15 +31,15 @@ const Navbar = () => {
             </Box>
 
             <Box className={classes.btn_box}>
-            {imageList.map((items) => {
-              return (
-                  <Button>
+              {imageList.map((items, index) => {
+                return (
+                  <Button key={index}>
                     <img src={items.iconImg} className={classes.imgIcon} />
                   </Button>
-              );
-            })}
-                </Box>
-            <Box marginLeft='84%' >
+                );
+              })}
+            </Box>
+            <Box marginLeft="84%">
               <Button>
                 <img src={AvatarIcon} className={classes.imgIcon} />
               </Button>
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      marginLeft:"63%",
+      marginLeft: "63%",
     },
     main_btn_box: {
       display: "flex",

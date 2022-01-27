@@ -15,10 +15,12 @@ import { useNavigate } from "react-router-dom";
 import { userDetails } from "../UserProfile/Action";
 import { useDispatch } from "react-redux";
 
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
 const LoginPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [userNumber, setUserNumber] = useState("");
+  const [user, setUser] = useState("");
   const [snackbarStatus, setSnackbarStatus] = useState(false);
   const [authenticationStatus, setAuthenticationStatus] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,14 +29,15 @@ const LoginPage = () => {
   const handleLogin = () => {
     setLoading(true);
 
-    if (userNumber !== "") {
-      dispatch(userDetails());
+    if (user !== "") {
+      dispatch(userDetails(user));
 
       history("/userprofile/chiragbalani");
       setLoading(false);
     } else {
       setSnackbarStatus(true);
-      setAuthenticationStatus("please enter your number first");
+      setLoading(false);
+      setAuthenticationStatus("please select user");
     }
   };
 
@@ -45,10 +48,18 @@ const LoginPage = () => {
           welcome to crewbella
         </Typography>
         <Paper elevation={3} className={classes.paper_box}>
-          <TextField
+          {/* <TextField
             label="Enter the mobile number"
             type="number"
             onChange={(e) => setUserNumber(e.target.value)}
+          /> */}
+          <Autocomplete
+            onChange={(event, value) => setUser(value.id)}
+            options={[{ name: "Chirag Balani", id: "chiragbalani" }]}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField {...params} label="Type name" variant="outlined" />
+            )}
           />
           <Button onClick={handleLogin} className={classes.btn}>
             {loading ? <CircularProgress size={20} /> : "login"}

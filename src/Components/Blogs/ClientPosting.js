@@ -32,112 +32,108 @@ const ClientPosting = () => {
 
   return (
     <>
-      {ClintPost?.map((item) => {
+      {ClintPost?.map((item, index) => {
         return (
-          <>
-            <Paper elevation={2} className={classes.paper_box}>
-              <Box className={classes.avatar_box}>
-                <Avatar className={classes.avatar}>
+          <Paper key={index} elevation={2} className={classes.paper_box}>
+            <Box className={classes.avatar_box}>
+              <Avatar className={classes.avatar}>
+                {" "}
+                <img
+                  src={userDetails.basic.image_hd}
+                  className={classes.img}
+                />{" "}
+              </Avatar>
+              <Box>
+                <Typography style={{ fontWeight: "bold" }}>
+                  {userDetails.basic.name}
+                </Typography>
+                <Typography>@{userDetails.basic.username}</Typography>
+              </Box>
+              <Button> {<MoreVert />} </Button>
+            </Box>
+
+            <Box className={classes.postInfo}>
+              <Typography variant="h4" className={classes.post}>
+                Posting
+              </Typography>
+              <Typography variant="h5" className={classes.post_status}>
+                {item.is_active == true ? "open" : "close"}
+              </Typography>
+            </Box>
+
+            <Box className={classes.main_content}>
+              <Box>
+                <Typography className={classes.heading}>
                   {" "}
-                  <img
-                    src={userDetails.basic.image_hd}
-                    className={classes.img}
-                  />{" "}
-                </Avatar>
-                <Box>
-                  <Typography style={{ fontWeight: "bold" }}>
-                    {userDetails.basic.name}
-                  </Typography>
-                  <Typography>@{userDetails.basic.username}</Typography>
-                </Box>
-                <Button> {<MoreVert />} </Button>
-              </Box>
-
-              <Box className={classes.postInfo}>
-                <Typography variant="h4" className={classes.post}>
-                  Posting
+                  <b /> looking for
                 </Typography>
-                <Typography variant="h5" className={classes.post_status}>
-                  {item.is_active == true ? "open" : "close"}
-                </Typography>
-              </Box>
-
-              <Box className={classes.main_content}>
-                <Box>
-                  <Typography className={classes.heading}>
-                    {" "}
-                    <b /> looking for
-                  </Typography>
-                  <Typography>{item.profession}</Typography>
-                  <Typography className={classes.heading}>
-                    experience
-                  </Typography>
-                  <Typography>1 years</Typography>
-                </Box>
-                <Box>
-                  <Typography className={classes.heading}>location</Typography>
-                  <Typography>{item.location}</Typography>
-                  <Typography className={classes.heading}>skills</Typography>
-                  {item.skills !== null &&
-                    item.skills
-                      .split(",")
-                      .map(
-                        (item, index) =>
-                          index < 2 && <Typography>{item}</Typography>
-                      )}
-                </Box>
+                <Typography>{item.profession}</Typography>
+                <Typography className={classes.heading}>experience</Typography>
+                <Typography>1 years</Typography>
               </Box>
               <Box>
-                {showDetails && (
-                  <Box padding="14px">
-                    <Typography>{item.description}</Typography>
+                <Typography className={classes.heading}>location</Typography>
+                <Typography>{item.location}</Typography>
+                <Typography className={classes.heading}>skills</Typography>
+                {item.skills !== null &&
+                  item.skills
+                    .split(",")
+                    .map(
+                      (item, index) =>
+                        index < 2 && <Typography key={index}>{item}</Typography>
+                    )}
+              </Box>
+            </Box>
+            <Box>
+              {showDetails && (
+                <Box padding="14px">
+                  <Typography>{item.description}</Typography>
+                  <hr />
+                  <Box>
+                    <Typography>
+                      {" "}
+                      <span className={classes.span_tag}> experience </span>
+                      {item.experience} year(s)
+                    </Typography>
                     <hr />
-                    <Box>
-                      <Typography>
-                        {" "}
-                        <span className={classes.span_tag}> experience </span>
-                        {item.experience} year(s)
-                      </Typography>
-                      <hr />
-                      <Typography>
-                        {" "}
-                        <span className={classes.span_tag}>job type </span>{" "}
-                        {item.job_type}{" "}
-                      </Typography>
-                      <hr />
+                    <Typography>
+                      {" "}
+                      <span className={classes.span_tag}>job type </span>{" "}
+                      {item.job_type}{" "}
+                    </Typography>
+                    <hr />
 
-                      <Typography>
-                        {" "}
-                        <span className={classes.span_tag}>openings </span>{" "}
-                        {item.openings}{" "}
-                      </Typography>
-                      <hr />
+                    <Typography>
+                      {" "}
+                      <span className={classes.span_tag}>openings </span>{" "}
+                      {item.openings}{" "}
+                    </Typography>
+                    <hr />
 
-                      <Typography>
-                        {" "}
-                        <span className={classes.span_tag}>
-                          time period{" "}
-                        </span>{" "}
-                        {item.time_period}
-                      </Typography>
-                    </Box>
+                    <Typography>
+                      {" "}
+                      <span className={classes.span_tag}>
+                        time period{" "}
+                      </span>{" "}
+                      {item.time_period}
+                    </Typography>
                   </Box>
-                )}
-              </Box>
+                </Box>
+              )}
+            </Box>
 
-              <Box className={classes.btn_box}>
-                <Button onClick={() => setShowDetails(!showDetails)}>
-                  <img src={sort} /> Details
-                </Button>
-                <Button>
-                  <img src={aply} /> apply
-                </Button>
-                <Button>
-                  <img src={mail} /> ping
-                </Button>
-              </Box>
-            </Paper>
-          </>
+            <Box className={classes.btn_box}>
+              <Button onClick={() => setShowDetails(!showDetails)}>
+                <img src={sort} /> Details
+              </Button>
+              <Button>
+                <img src={aply} /> apply
+              </Button>
+              <Button>
+                <img src={mail} /> ping
+              </Button>
+            </Box>
+          </Paper>
         );
       })}
     </>

@@ -22,19 +22,14 @@ const UsersBlogs = () => {
     setValue(newvalue);
   };
 
-  useEffect(() => {
-    console.log("tab", value);
-  }, [value]);
   return (
-    <div style={{ height:'100vh', overflowY: "scroll" }}>
+    <div style={{ height: "100vh", overflowY: "scroll" }}>
       <Box sx={{ maxWidth: 450 }}>
-        <Box className={classes.tab_box} > 
+        <Box className={classes.tab_box}>
           <Tabs
             value={value}
             onChange={handleChange}
             variant="scrollable"
-            scrollButtons
-            allowScrollButtonsMobile
             className={classes.tabbar}
           >
             {/* <Tab className={classes.tabs} value={0} label="Top" /> */}
@@ -46,7 +41,7 @@ const UsersBlogs = () => {
           </Tabs>
         </Box>
 
-        <Box >
+        <Box>
           {value == 0 ? (
             <Box>
               <Portfolio />
@@ -87,13 +82,13 @@ const useStyles = makeStyles((theme) =>
         color: "#C50707",
       },
     },
-    tab_box:{
+    tab_box: {
       // position:"fixed"
       // marginBottom: '0px',
       // position: 'fixed',
       // width: '29%',
-      backgroundColor: '#fff',
-    }
+      backgroundColor: "#fff",
+    },
   })
 );
 

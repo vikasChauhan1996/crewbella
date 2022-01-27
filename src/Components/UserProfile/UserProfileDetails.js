@@ -40,93 +40,93 @@ const UserProfileDetails = () => {
     setShowMore(!showMore);
   };
 
-  useEffect(() => {
-    console.log("user-deatils", userDetails);
-  }, [userDetails]);
-
-  useEffect(() => {
-  
-  }, [params])
-
   return (
     <>
-      {Object.keys(userDetails).length ? (
-        <Box className={classes.main_div}>
-          <Avatar className={classes.imgDiv} src={userDetails.basic.image_hd}>
+      <Box className={classes.main_div}>
+        <Avatar className={classes.imgDiv} src={userDetails.basic.image_hd}>
+          {" "}
+        </Avatar>
+        <Typography variant="h4">chirag bilani</Typography>
+
+        <Box className={classes.userid}>
+          <Typography>@{userDetails.basic.username}</Typography>
+          <Typography>
             {" "}
-          </Avatar>
-          <Typography variant="h4">chirag bilani</Typography>
-
-          <Box className={classes.userid}>
-            <Typography>@{userDetails.basic.username}</Typography>
-            <Typography>
-              {" "}
-              <LocationOnOutlined /> {userDetails.locations[0].city}{" "}
-            </Typography>
-          </Box>
-          <Box className={classes.userid}>
-            <Typography> <span style={{fontWeight:"bolder"}} >{userDetails.basic.followings} </span>  followers</Typography>
-            <Typography>
-            <span style={{fontWeight:"bolder"}} > {userDetails.basic.quick_bookings} </span>  QuickBooks
-            </Typography>
-          </Box>
-          <Button className={classes.btn}>see quickbook</Button>
-
-          <Typography style={{fontWeight:"bold"}} >#director #director #filmmaker</Typography>
-
-          <Button
-            variant="outlined"
-            className={classes.moreBtn}
-            onClick={handleMount}
-            endIcon={<KeyboardArrowDown />}
-          >
-            know more
-          </Button>
-          {showMore && (
-            <Box className={classes.fregmnt_box} >
-              <Box className={classes. join_birt_date} >
-                <CalendarTodayOutlined />
-
-                <Typography
-                  className={classes.join_birt_date}
-                  variant="subtitle2"
-                >
-                  Joined:
-                </Typography>
-                <Typography>
-                  {new Date(userDetails.basic.created_at).toLocaleDateString(
-                    "en-US",
-                    {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }
-                  )}
-                </Typography>
-              </Box>
-              <Box className={classes. join_birt_date} >
-                <CakeOutlined />
-
-                <Typography
-                  className={classes.join_birt_date}
-                  variant="subtitle2"
-                >
-                  Date of Birth:
-                </Typography>
-                <Typography>{userDetails.basic.dob}</Typography>
-              </Box>
-            </Box>
-          )}
-
-          <Box>
-            <Button>follow</Button>
-            <Button>ping me</Button>
-          </Box>
+            <LocationOnOutlined /> {userDetails.locations[0].city}{" "}
+          </Typography>
         </Box>
-      ) : (
-        <CircularProgress />
-      )}
+        <Box className={classes.userid}>
+          <Typography>
+            {" "}
+            <span style={{ fontWeight: "bolder" }}>
+              {userDetails.basic.followings}{" "}
+            </span>{" "}
+            followers
+          </Typography>
+          <Typography>
+            <span style={{ fontWeight: "bolder" }}>
+              {" "}
+              {userDetails.basic.quick_bookings}{" "}
+            </span>{" "}
+            QuickBooks
+          </Typography>
+        </Box>
+        <Button className={classes.btn}>see quickbook</Button>
+
+        <Typography style={{ fontWeight: "bold" }}>
+          #director #director #filmmaker
+        </Typography>
+
+        <Button
+          variant="outlined"
+          className={classes.moreBtn}
+          onClick={handleMount}
+          endIcon={<KeyboardArrowDown />}
+        >
+          know more
+        </Button>
+        {showMore && (
+          <Box className={classes.fregmnt_box}>
+            <Box className={classes.join_birt_date}>
+              <CalendarTodayOutlined />
+
+              <Typography
+                className={classes.join_birt_date}
+                variant="subtitle2"
+              >
+                Joined:
+              </Typography>
+              <Typography>
+                {new Date(userDetails.basic.created_at).toLocaleDateString(
+                  "en-US",
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
+              </Typography>
+            </Box>
+            <Box className={classes.join_birt_date}>
+              <CakeOutlined />
+
+              <Typography
+                className={classes.join_birt_date}
+                variant="subtitle2"
+              >
+                Date of Birth:
+              </Typography>
+              <Typography>{userDetails.basic.dob}</Typography>
+            </Box>
+          </Box>
+        )}
+
+        <Box>
+          <Button>follow</Button>
+          <Button>ping me</Button>
+        </Box>
+      </Box>
     </>
   );
 };
@@ -177,18 +177,17 @@ const useStyles = makeStyles((theme) =>
     join_birt_date: {
       display: "flex",
       alignItems: "center",
-      marginBottom:"2%",
-      marginTop:"2%",
+      marginBottom: "2%",
+      marginTop: "2%",
       // paddingLeft:"2%",
       // width:"100%"
-
     },
-    fregmnt_box:{
-      display:"flex",
-      flexDirection:"column",
-      width:"70%",
-      justifyContent:"space-between"
-    }
+    fregmnt_box: {
+      display: "flex",
+      flexDirection: "column",
+      width: "70%",
+      justifyContent: "space-between",
+    },
   })
 );
 
